@@ -21,6 +21,7 @@ namespace Mitrais_WinForm
 
         private void FrmRegistration_Load(object sender, EventArgs e)
         {
+            Libs.CallSettingsConn();
             getYear();
         }
 
@@ -31,7 +32,10 @@ namespace Mitrais_WinForm
 
         private void CbYear_SelectedValueChanged(object sender, EventArgs e)
         {
-            getDate();
+            if (cbDate.Text == "Date")
+            {
+                getDate();
+            }
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
@@ -47,13 +51,8 @@ namespace Mitrais_WinForm
 
         private void ValidateForm()
         {
-            if (txtMobileNum.Text == "" || IsPhoneNumber(txtMobileNum.Text))
-            {
-                frmError.SetError(txtMobileNum, "Please enter valid Mobile Number");
-                InputsOnOff(this, true);
-                return;
-            }
-            else if (txtMobileNum.Text != "" || IsPhoneNumber(txtMobileNum.Text))
+            bool isExistMobile = false, isExistEmail = false;
+            if (txtMobileNum.Text != "" || IsPhoneNumber(txtMobileNum.Text))
             {
                 MySqlConnection conn;
                 conn = new MySqlConnection(Libs.connectionString);
@@ -65,9 +64,11 @@ namespace Mitrais_WinForm
                     MySqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        frmError.SetError(txtMobileNum, "Mobile Number already registered");
-                        InputsOnOff(this, true);
-                        return;
+                        isExistMobile = true;
+                    }
+                    else
+                    {
+                        isExistMobile = false;
                     }
                     dr.Close();
                     conn.Close();
@@ -78,13 +79,8 @@ namespace Mitrais_WinForm
                     conn.Close();
                 }
             }
-            else if (txtEmail.Text == "")
-            {
-                frmError.SetError(txtEmail, "Please enter valid Email");
-                InputsOnOff(this, true);
-                return;
-            }
-            else if (txtEmail.Text != "")
+
+            if (txtEmail.Text != "")
             {
                 MySqlConnection conn;
                 conn = new MySqlConnection(Libs.connectionString);
@@ -96,9 +92,10 @@ namespace Mitrais_WinForm
                     MySqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        frmError.SetError(txtMobileNum, "Email already registered");
-                        InputsOnOff(this, true);
-                        return;
+                        isExistEmail = true;
+                    }else 
+                    {
+                        isExistEmail = false;
                     }
                     dr.Close();
                     conn.Close();
@@ -108,6 +105,30 @@ namespace Mitrais_WinForm
                 {
                     conn.Close();
                 }
+            }
+
+            if (txtMobileNum.Text == "" || IsPhoneNumber(txtMobileNum.Text))
+            {
+                frmError.SetError(txtMobileNum, "Please enter valid Mobile Number");
+                InputsOnOff(this, true);
+                return;
+            }
+            else if (isExistMobile){
+                frmError.SetError(txtMobileNum, "Mobile Number already registered");
+                InputsOnOff(this, true);
+                return;
+            }            
+            else if (txtEmail.Text == "")
+            {
+                frmError.SetError(txtEmail, "Please enter valid Email");
+                InputsOnOff(this, true);
+                return;
+            }
+            else if (isExistEmail)
+            {
+                frmError.SetError(txtMobileNum, "Email already registered");
+                InputsOnOff(this, true);
+                return;
             }
             else if (txtFirstName.Text == "")
             {
@@ -124,6 +145,7 @@ namespace Mitrais_WinForm
             else
             {
                 Save();
+                btnLogin.Enabled = true;
                 btnLogin.Visible = true;
             }
         }
@@ -135,7 +157,7 @@ namespace Mitrais_WinForm
                 string cGender;
                 if (rbMale.Checked == true) { cGender = "M"; } else if (rbFemale.Checked == true) { cGender = "F"; } else { cGender = "N"; }
 
-                Libs.querystring = "INSERT into registrasi (MobileNumber, FirstName, LastName, Gender, Email, user_add, date_add) " +
+                Libs.querystring = "INSERT into registration (MobileNumber, FirstName, LastName, Gender, Email, user_add, date_add) " +
                                          "values ('" + txtMobileNum.Text + "', '" + txtFirstName.Text + "', '" + txtLastName.Text + "', " +
                                          "'" + cGender + "', '" + txtEmail.Text + "', '" + Libs.user.ToString() + "', now())";
                 Libs.Requery();
@@ -168,8 +190,8 @@ namespace Mitrais_WinForm
         {
             List<int> dt = new List<int>();
 
-            for (int i = 0; i < 30; i++)
-                dt.Add(Convert.ToInt32(DateTime.Today.AddYears(i - 29).Year));
+            for (int i = 0; i < 60; i++)
+                dt.Add(Convert.ToInt32(DateTime.Today.AddYears(i - 59).Year));
 
             cbYear.DataSource = dt;
             this.Controls.Add(cbYear);
