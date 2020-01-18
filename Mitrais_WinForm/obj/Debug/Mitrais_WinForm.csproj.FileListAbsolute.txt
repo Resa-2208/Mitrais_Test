@@ -1,0 +1,14 @@
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\bin\Debug\Mitrais_WinForm.exe.config
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\bin\Debug\Mitrais_WinForm.exe
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\bin\Debug\Mitrais_WinForm.pdb
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.csprojAssemblyReference.cache
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.frmRegistration.resources
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.Properties.Resources.resources
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.csproj.GenerateResource.cache
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.csproj.CoreCompileInputs.cache
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.exe
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.pdb
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\bin\Debug\MySql.Data.DLL
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.csproj.CopyComplete
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.Login.resources
+C:\Users\PC-Resa\source\repos\Mitrais_WinForm\Mitrais_WinForm\obj\Debug\Mitrais_WinForm.Config.resources
